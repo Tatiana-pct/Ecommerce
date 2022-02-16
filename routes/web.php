@@ -13,4 +13,4 @@
 
 Route::get('/', 'HomeController@index');
 
-//Route::get('/index', );
+Route::get('/products', 'ProductController@index');

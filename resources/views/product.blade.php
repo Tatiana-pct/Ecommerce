@@ -1,6 +1,5 @@
 @extends('master')
 
 @section('content')
-
-    <h1>Ma page Home</h1>
-@stop
+    <h1>Ma page product</h1>
+    @stop
