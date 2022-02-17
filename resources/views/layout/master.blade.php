@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
 
     <div id="app">
@@ -46,13 +47,13 @@
 <script src="js/jquery.nice-select.min.js"></script>
 <script src="js/jquery.sticky.js"></script>
 <script src="js/nouislider.min.js"></script>
-<script src="js/countdown.js"></script>
+
 <script src="js/jquery.magnific-popup.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <!--gmaps Js-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 <script src="js/gmaps.min.js"></script>
 <script src="js/main.js"></script>
-</body>
+</body> <!-- body -->
 
 </html>
