@@ -11,8 +11,23 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+//Main page
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/contact', 'HomeController@contact')->name('contact');
 
-Route::get('/product/create', 'productController@create')->name("create");
-Route::post('/product/store', 'ProductController@store')->name("store");
+//shop
+Route::get('/shop', 'HomeController@shop')->name('shop.index');
+Route::get('/shop/single-product', 'HomeController@shopshow')->name('shop.show');
+
+//cart
+Route::get('/cart', 'HomeController@cart')->name('cart.index');
+
+//checkout
+Route::get('/checkout', 'HomeController@checkout')->name('checkout.index');
+Route::get('/checkout/success', 'HomeController@succes')->name('checkout.success');
+
+//orders
+Route::get('/orders', 'HomeController@orders')->name('orders');
+
+
 
