@@ -17,7 +17,7 @@ Route::get('/contact', 'HomeController@contact')->name('contact');
 
 //shop
 Route::get('/shop', 'HomeController@shop')->name('shop.index');
-Route::get('/shop/single-product', 'HomeController@shopshow')->name('shop.show');
+Route::get('/shop/single-product', 'HomeController@product')->name('product');
 
 //cart
 Route::get('/cart', 'HomeController@cart')->name('cart.index');
