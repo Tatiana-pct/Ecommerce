@@ -13,4 +13,6 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/products', 'ProductController@index');
+Route::get('/product/create', 'productController@create')->name("create");
+Route::post('/product/store', 'ProductController@store')->name("store");
+
