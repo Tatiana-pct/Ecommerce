@@ -19,14 +19,14 @@
                         </li><!-- home -->
 
                         <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                               aria-expanded="false">
+                            <a href="{{route('shop.index')}}" class="nav-link" >
                                 <i class="fas fa-shopping-bag" ></i> Shop</a>
                         </li><!-- shop -->
 
                         <li class="nav-item"><a class="nav-link" href="{{route('contact')}}">
                                 <i class="fas fa-user-plus"></i> Contact</a>
                         </li><!--contact-->
+
                         </ul><!-- nab-bar left-->
 
 
@@ -36,8 +36,7 @@
                         </li><!-- sign in-->
 
                         <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                               aria-expanded="false">
+                            <a href="#" class="nav-link " >
                                 <i class="fas fa-shopping-bag" ></i> Login</a>
                         </li><!-- login-->
 
@@ -46,8 +45,10 @@
                         </li><!-- orders -->
 
                         <li class="nav-item"><a class="nav-link" href="#">
-                                <i class="fas fa-sign-out"></i> logout</a>
+                                <i class="fas fa-sign-out-alt"></i> logout</a>
                         </li><!-- logout-->
+
+
 
                         <li class="nav-item"><a class="nav-link" href="#">
                                 <i class="fas fa-shopping-cart"></i> cart</a>
