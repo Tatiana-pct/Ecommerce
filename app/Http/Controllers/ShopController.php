@@ -31,8 +31,9 @@ class ShopController extends Controller
     public function show( $slug)
     {
         $product =  Product::where('slug',$slug)->firstOrFail();
-
-        return view('product');
+        return view('product',[
+        'product'=> $product
+        ]);
     }
 
     /**
