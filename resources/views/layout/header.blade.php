@@ -40,7 +40,7 @@
                                 <i class="fas fa-shopping-bag" ></i> Login</a>
                         </li><!-- login-->
 
-                        <li class="nav-item"><a class="nav-link" href="#">
+                        <li class="nav-item"><a class="nav-link" href="{{route('orders')}}">
                                 <i class="fas fa-truck"></i> orders</a>
                         </li><!-- orders -->
 
