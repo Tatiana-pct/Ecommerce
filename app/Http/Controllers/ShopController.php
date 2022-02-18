@@ -28,10 +28,10 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show( $slug)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
-        dd($product);
+        $product =  Product::where('slug',$slug)->firstOrFail();
+
         return view('product');
     }
 
