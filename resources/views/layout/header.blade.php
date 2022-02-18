@@ -48,9 +48,7 @@
                                 <i class="fas fa-sign-out-alt"></i> logout</a>
                         </li><!-- logout-->
 
-
-
-                        <li class="nav-item"><a class="nav-link" href="#">
+                        <li class="nav-item"><a class="nav-link" href="{{route('cart.index')}}">
                                 <i class="fas fa-shopping-cart"></i> cart</a>
                         </li><!-- cart -->
                     </ul><!-- nav bar right-->
