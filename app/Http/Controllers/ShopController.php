@@ -11,14 +11,16 @@ class ShopController extends Controller
     /**
      * Display a listing of the resource.
      *
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $products = Product::all();
-
+        $categories = Category::all();
         return view('shop',[
-            'products'=> $products
+            'products'=> $products,
+            'categories'=> $categories
         ]);
     }
 
@@ -35,7 +37,7 @@ class ShopController extends Controller
         $category = Category::where('id',$product->category_id)->firstOrFail();
         return view('product',[
         'product'=> $product,
-        'category'=> $category
+       'category'=> $category
         ]);
     }
 
