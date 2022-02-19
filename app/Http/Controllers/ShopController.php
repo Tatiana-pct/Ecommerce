@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\product;
+use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -31,8 +32,10 @@ class ShopController extends Controller
     public function show( $slug)
     {
         $product =  Product::where('slug',$slug)->firstOrFail();
+        $category = Category::where('id',$product->category_id)->firstOrFail();
         return view('product',[
-        'product'=> $product
+        'product'=> $product,
+        'category'=> $category
         ]);
     }
 

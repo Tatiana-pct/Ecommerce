@@ -42,7 +42,7 @@
                         <h3>{{$product->name}}</h3>
                         <h2>{{$product->price}}</h2>
                         <ul class="list">
-                            <li><a class="active" href="#"><span>Category</span> : Household</a></li>
+                            <li><a class="active" href="#"><span>Category</span> {{$category->name}}</a></li>
                             <li><a href="#"><span>Availibility</span> : In Stock</a></li>
                         </ul>
                         <p>{{$product->details}}</p>
