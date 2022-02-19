@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('details')->nullable();
             $table->integer('price');
             $table->text('description');
+            $table->unsignedBigInteger('category_id')->index();
             $table->timestamps();
         });
     }
