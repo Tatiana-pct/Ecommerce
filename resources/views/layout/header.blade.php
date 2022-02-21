@@ -35,23 +35,25 @@
 
 
                     <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item "><a class="nav-link" href="{{route('register')}}">
-                                <i class="fas fa-sign-in-alt"></i> sign Up</a>
-                        </li><!-- register-->
 
-                        <li class="nav-item submenu dropdown">
-                            <a href="{{route('login')}}" class="nav-link" >
-                                <i class="fas fa-shopping-bag" ></i> Login</a>
-                        </li><!-- login-->
+                            <li class="nav-item "><a class="nav-link" href="{{route('register')}}">
+                                    <i class="fas fa-sign-in-alt"></i> sign Up</a>
+                            </li><!-- register-->
+                            @guest
 
-                        <li class="nav-item"><a class="nav-link" href="{{route('orders')}}">
-                                <i class="fas fa-truck"></i> orders</a>
-                        </li><!-- orders -->
+                            <li class="nav-item submenu dropdown">
+                                <a href="{{route('login')}}" class="nav-link" >
+                                    <i class="fas fa-shopping-bag" ></i> Login</a>
+                            </li><!-- login-->
+                        @else
+                            <li class="nav-item"><a class="nav-link" href="{{route('orders')}}">
+                                    <i class="fas fa-truck"></i> orders</a>
+                            </li><!-- orders -->
 
-                        <li class="nav-item"><a class="nav-link" href="{{route('logout')}}">
-                                <i class="fas fa-sign-out-alt"></i> logout</a>
-                        </li><!-- logout-->
-
+                            <li class="nav-item"><a class="nav-link" href="{{route('logout')}}">
+                                    <i class="fas fa-sign-out-alt"></i> logout</a>
+                            </li><!-- logout-->
+                        @endguest
                         <li class="nav-item"><a class="nav-link" href="{{route('cart.index')}}">
                                 <i class="fas fa-shopping-cart"></i> cart</a>
                         </li><!-- cart -->
