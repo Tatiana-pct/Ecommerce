@@ -29,13 +29,12 @@
                         <div class="single-prd-item">
                             <img class="img-fluid" src="{{Voyager::image($product->image)}}" alt="">
                         </div>
+                        @foreach(json_decode($product->images, true) as $image)
 
                         <div class="single-prd-item">
-                            <img class="img-fluid" src="{{Voyager::image($product->image)}}" alt="">
+                            <img class="img-fluid" src="{{Voyager::image($image)}}" alt="">
                         </div>
-                        <div class="single-prd-item">
-                            <img class="img-fluid" src="{{Voyager::image($product->image)}}" alt="">
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-lg-5 offset-lg-1">

@@ -36,3 +36,15 @@ Route::get('/orders', 'HomeController@orders')->name('orders');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+//Authentification
+Auth::routes();
+
+//Logout
+Route::get('/logout', function (){
+    auth()->logout();
+    Session()->flush();
+    return Redirect::to('/');
+})->name('logout');
+
+
