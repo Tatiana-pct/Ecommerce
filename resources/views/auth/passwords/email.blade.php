@@ -30,8 +30,6 @@
                                 @endif
                             </div><!-- and Email-->
 
-
-
                             <div class="col-md-12 form-group">
                                 <button type="submit" value="submit" class="primary-btn">Send Password Reset Link</button>
                             </div>
