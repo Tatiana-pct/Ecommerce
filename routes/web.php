@@ -33,8 +33,8 @@ Route::post('/save/{product}/cart', 'SaveController@store')->name('save.store');
 //destroy wish
 
 //checkout
-Route::get('/checkout', 'HomeController@checkout')->name('checkout.index');
-Route::get('/checkout/success', 'HomeController@success')->name('checkout.success');
+Route::get('/checkout', 'checkoutController@checkout')->name('checkout.index');
+Route::get('/checkout/success', 'checkoutController@success')->name('checkout.success');
 
 //orders
 Route::get('/orders', 'HomeController@orders')->name('orders');

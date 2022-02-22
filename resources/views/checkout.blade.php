@@ -1,5 +1,9 @@
 @extends('layout.master')
 
+@section('includes')
+<script src="http://js.stripe.com/v3/"></script>
+@stop
+
 @section('content')
     <!-- Start Banner Area -->
     <section class="banner-area organic-breadcrumb">
@@ -79,14 +83,20 @@
                                     <label for="f-option2">Create an account?</label>
                                 </div>
                             </div>
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-12 form-group"><!--paiement-->
                                 <div class="creat_account">
-                                    <h3>Shipping Details</h3>
-                                    <input type="checkbox" id="f-option3" name="selector">
-                                    <label for="f-option3">Ship to a different address?</label>
+                                    <div class="form-group">
+                                        <label for="card-element">
+                                            Credit or debit cart
+                                        </label>
+                                        <div id="card-element">
+                                            <!-- A stripe Element will be insert here3.-->
+                                        </div>
+                                        <!-- use to displau form error.-->
+                                        <div id="cart-error" role="alert"></div>
+                                     </div>
                                 </div>
-                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="Order Notes"></textarea>
-                            </div>
+                            </div><!--end paiement-->
                         </form>
                     </div>
                     <div class="col-lg-4">
@@ -119,10 +129,82 @@
                             </div><!--end code-->
                         </div><!--end coupon-->
                     </div>
-                </div>
-            </div>
-       </div>
-    </section>
     <!--================End Checkout Area =================-->
 
+@stop
+
+@section('js')
+
+<script>
+//Create a strip client
+var strip = Stripe('pk_test_08twkYsI7DmVczbeuoKND5n8001ZG3KdU6');
+
+//create an instance of elements.
+var element = stripe.element();
+
+//custom styling can be passed to otion when creating en Element
+
+var style = {
+    base:{
+        color:'#32325d',
+        fontFamily:'"helvetica neue", helvetica, sans-serif,
+        fontSmoothing:'antialiased',
+        fontsize: 16px,
+        '::placehorlder':{
+            color:'#aab7c4'
+        }
+    },
+    invalid:{
+        color:'#fa755a',
+        iconcolor:'#fa755a'
+    }
+};
+
+//create an instance of the cart element
+var card = element.create('card', {style: style});
+
+//add an instance of the card Element into the 'card-element <div>
+card.mount('#cart-element');
+
+//handle real-time validation error from the card element.
+card.addEventlistener('change', function(event){
+    var displeyError = docuement.getElementById('card-errors');
+    if (event.error){
+        displayError.textContent = event.error.message;
+    }else{
+        displayError.textContent = '';
+    }
+});
+
+//handle form submission.
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function (event){
+    if (result.error){
+        //Inform the user if there was an error
+        var errorElement = document.getElementById('card-errors');
+    }else{
+       //send the token to your server.
+       stripTokenHandler(result.token);
+    }
+});
+
+
+//submit the form with token ID
+function stripTokenHandler(token){
+    //Insert the token ID into the form so it gets submitted to the server
+    var form = document.getElementById('payment-form');
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type','hidden');
+    hiddenInput.setAttribute('name','striptoken');
+    hiddenInput.setAttribute('value','token.id');
+    form.appendChild(hiddenInput);
+
+    //submit the form
+    form.submit();
+}
+
+
+
+
+</script>
 @stop
