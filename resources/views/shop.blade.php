@@ -64,7 +64,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="single-product">
                                 <a href=" {{route('shop.show',$product->slug)}}">
-                                    <a><img class="img-fluid" src="{{Voyager::image($product->image)}}" alt="IMG-PRODUCT"></a><hr>
+                                    <img class="img-fluid" src="{{Voyager::image($product->image)}}" alt="IMG-PRODUCT"><hr>
                                 </a>
 
                                 <div class="product-details">

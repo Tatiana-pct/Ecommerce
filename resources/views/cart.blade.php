@@ -154,7 +154,7 @@
 
                                         <form action="{{route('save.store', $product->rowId)}}" method="POST"><!-- btn add for wish -->
                                             {{csrf_field()}}
-                                            <button type="submit" class="btn btn-link"  style="color: #ffae00">Add to cart</button>
+
                                         </form><!-- end  btn add for wish -->
                                     </div>
                                 </div>

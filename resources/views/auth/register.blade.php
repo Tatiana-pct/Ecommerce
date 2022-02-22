@@ -70,7 +70,7 @@
 
                             <!-- Password_confirmation-->
                             <div class="col-md-12 form-group{{ $errors->has('Password_confirmation') ? ' has-error' : '' }}">
-                                <input type="Password_confirmation" class="form-control" id="Password_confirmation" name="Password_confirmation" placeholder="Your Password_confirmation" value="{{ old('Password_confirmation') }}">
+                                <input type="Password" class="form-control" id="Password_confirmation" name="Password_confirmation" placeholder="Your Password_confirmation" value="{{ old('Password_confirmation') }}">
                             </div>
 
                             <div class="col-md-12 form-group">

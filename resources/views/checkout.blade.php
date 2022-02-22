@@ -28,13 +28,14 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <h3>Billing Details</h3>
-                        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                        <form class="row contact_form" action="{{route('checkout.store')}}" method="POST" id="payment-form" >
+                            {{csrf_field()}}
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="first" name="name">
+                                <input type="text" class="form-control" id="firstname" name="name">
                                 <span class="placeholder" data-placeholder="First name"></span>
                             </div>
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="last" name="name">
+                                <input type="text" class="form-control" id="lastname" name="name">
                                 <span class="placeholder" data-placeholder="Last name"></span>
                             </div>
                             <div class="col-md-12 form-group">
@@ -45,7 +46,7 @@
                                 <span class="placeholder" data-placeholder="Phone number"></span>
                             </div>
                             <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="email" name="compemailany">
+                                <input type="text" class="form-control" id="email" name="email">
                                 <span class="placeholder" data-placeholder="Email Address"></span>
                             </div>
                             <div class="col-md-12 form-group p_star">
@@ -97,6 +98,7 @@
                                      </div>
                                 </div>
                             </div><!--end paiement-->
+                            <button id="complete-order" type="submit" class="primary-btn my-3"> Proced to paiement</button>
                         </form>
                     </div>
                     <div class="col-lg-4">
@@ -104,14 +106,14 @@
                             <h2>Your Order</h2>
                             <ul class="list">
                                 <li><a href="#">Product <span>Total</span></a></li>
-                                <li><a href="#">Fresh Blackberry <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                            </ul>
+                                @foreach(Cart::content() as $product)
+                                  <li><a href="#">{{$product->name}}<span class="middle">x {{$product->qty}}</span> <span class="last">${{$product->price}}</span></a></li>
+                                @endforeach
+                             </ul>
                             <ul class="list list_2">
-                                <li><a href="#">Subtotal <span>$2160.00</span></a></li>
-                                <li><a href="#">Shipping <span>Flat rate: $50.00</span></a></li>
-                                <li><a href="#">Total <span>$2210.00</span></a></li>
+                                <li><a href="#">Subtotal <span>${{Cart::subtotal()}}</span></a></li>
+                                <li><a href="#">Taxe <span>{{Cart::tax()}}</span></a></li>
+                                <li><a href="#">Total <span>${{Cart::total()}}</span></a></li>
                             </ul>
                         </div><!--end your order-->
                         <div class="coupon my-3">
@@ -140,16 +142,15 @@
 var strip = Stripe('pk_test_08twkYsI7DmVczbeuoKND5n8001ZG3KdU6');
 
 //create an instance of elements.
-var element = stripe.element();
+var elements = strip.elements();
 
 //custom styling can be passed to otion when creating en Element
-
 var style = {
     base:{
         color:'#32325d',
-        fontFamily:'"helvetica neue", helvetica, sans-serif,
+        fontFamily:'"helvetica neue", helvetica, sans-serif',
         fontSmoothing:'antialiased',
-        fontsize: 16px,
+        fontsize: '16 px',
         '::placehorlder':{
             color:'#aab7c4'
         }
@@ -161,14 +162,14 @@ var style = {
 };
 
 //create an instance of the cart element
-var card = element.create('card', {style: style});
+var card = elements.create('card', {style: style});
 
 //add an instance of the card Element into the 'card-element <div>
-card.mount('#cart-element');
+card.mount('#card-element');
 
 //handle real-time validation error from the card element.
-card.addEventlistener('change', function(event){
-    var displeyError = docuement.getElementById('card-errors');
+card.addEventListener('change', function(event){
+    var displayError = document.getElementById('card-errors');
     if (event.error){
         displayError.textContent = event.error.message;
     }else{
@@ -178,14 +179,27 @@ card.addEventlistener('change', function(event){
 
 //handle form submission.
 var form = document.getElementById('payment-form');
-form.addEventListener('submit', function (event){
-    if (result.error){
-        //Inform the user if there was an error
-        var errorElement = document.getElementById('card-errors');
-    }else{
-       //send the token to your server.
-       stripTokenHandler(result.token);
+form.addEventListener('submit', function(event){
+    event.preventDefault();
+
+    var options = {
+        firstname: document.getElementById('firstname').value,
+        lastname: document.getElementById('lastname').value,
+        email: document.getElementById('email').value,
+
     }
+    console.log(options)
+
+    strip.createToken(card, options).then(function(result) {
+        if (result.error) {
+            //Inform the user if there was an error
+            var errorElement = document.getElementById('card-errors');
+            errorElement.textContent = result.error.message;
+        } else {
+            //send the token to your server.
+            stripTokenHandler(result.token);
+        }
+    });
 });
 
 
@@ -195,16 +209,13 @@ function stripTokenHandler(token){
     var form = document.getElementById('payment-form');
     var hiddenInput = document.createElement('input');
     hiddenInput.setAttribute('type','hidden');
-    hiddenInput.setAttribute('name','striptoken');
+    hiddenInput.setAttribute('name','stripToken');
     hiddenInput.setAttribute('value','token.id');
     form.appendChild(hiddenInput);
 
     //submit the form
     form.submit();
 }
-
-
-
 
 </script>
 @stop

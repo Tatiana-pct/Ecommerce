@@ -34,6 +34,7 @@ Route::post('/save/{product}/cart', 'SaveController@store')->name('save.store');
 
 //checkout
 Route::get('/checkout', 'checkoutController@checkout')->name('checkout.index');
+Route::post('/checkout', 'checkoutController@store')->name('checkout.store');
 Route::get('/checkout/success', 'checkoutController@success')->name('checkout.success');
 
 //orders
