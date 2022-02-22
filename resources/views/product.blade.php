@@ -32,7 +32,7 @@
                         @foreach(json_decode($product->images, true) as $image)
 
                         <div class="single-prd-item">
-                            <img class="img-fluid" src="{{Voyager::image($image)}}" alt="">
+                            <a href="#" ><img class="img-fluid" src="{{Voyager::image($image)}}" alt="IMG-PRODUCT">IMG-PRODUCT</a><hr>
                         </div>
                         @endforeach
                     </div>

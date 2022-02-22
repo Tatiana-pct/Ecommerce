@@ -9,6 +9,7 @@ class CartController extends Controller
 {
 
     public function index(){
+
         return view('cart');
     }
 
@@ -23,7 +24,7 @@ class CartController extends Controller
     {
 
         Cart::add($request->id, $request->name, 1, $request->price)->associate('App\Product');
-        return redirect()->route('cart.index')->with('success','produit ajouté a votre panier !');
+        return redirect()->route('cart.index')->with('success','product added to cart');
     }
 
 
@@ -38,11 +39,19 @@ class CartController extends Controller
     public function destroy($id)
     {
         Cart::remove($id);
-        return back()->with('success', 'le produite abien été suppimé du panier');
+        return back()->with('success', 'product has been removed to cart !');
     }
 
     public function reset(){
     cart::destroy();
 
+    }
+
+    public function save($id){
+        $item = Cart::get($id);
+        Cart::remove($id);
+
+        Cart::instance('save')-> add($item->id, $item->name,1, $item->price)->associate('App\Product');
+        return redirect()->route('cart.index')->with('success','product saved for later !');
     }
 }
