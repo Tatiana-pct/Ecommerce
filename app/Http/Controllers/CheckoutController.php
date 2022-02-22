@@ -23,7 +23,7 @@ class CheckoutController extends Controller
         \Stripe\Strip::setApiKey(env('STRIPE_SECRET'));
         try {
             $charge = \Stripe\Charge::create([
-                'amount'=>Cart::total() *100,
+                'amount'=> session()->has('coupon') ?  round(Cart::total() - session()->get('coupon')['discount'],2) *100 : Cart::total() *100,
                 'currency'=> 'eur',
                 'description'=> 'mon paimennt',
                 'source'=> $request->stipeToken,
@@ -47,6 +47,8 @@ class CheckoutController extends Controller
         if (!session()->has('success')){
             return  redirect()->route('home');
         }
+        Cart::destroy();
+        session()->forget('coupon');
         return view('success');
     }
 }
