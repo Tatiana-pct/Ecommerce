@@ -41,7 +41,7 @@
 
                             <li class="nav-item "><!-- register  -->
                                 <a class="nav-link" href="{{route('register')}}">
-                                    <i class="fas fa-sign-in-alt"></i> sign Up</a>
+                                    <i class="fas fa-user-plus"></i> sign Up</a>
                             </li><!--  end register-->
                             @guest
 
@@ -64,7 +64,12 @@
                             <a class="nav-link" href="{{route('cart.index')}}">
                                 <i class="fas fa-shopping-cart"></i>
                                 Cart
-                                @if
+
+                                {{--mise en place de l'enumeration de nbr d'article dans la panier--}}
+                                @if(Cart::instance('default')->count() > 0)
+                                    <span class="badge-primary"> {{cart::instance('default')->count()}} </span>
+
+                                @endif
                             </a>
                         </li><!--  end cart -->
                     </ul><!-- nav bar right-->
