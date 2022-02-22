@@ -32,10 +32,15 @@ Route::post('/save/{product}/cart', 'SaveController@store')->name('save.store');
 
 //destroy wish
 
+
 //checkout
 Route::get('/checkout', 'checkoutController@checkout')->name('checkout.index');
 Route::post('/checkout', 'checkoutController@store')->name('checkout.store');
 Route::get('/checkout/success', 'checkoutController@success')->name('checkout.success');
+
+//Coupons
+Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
+Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
 
 //orders
 Route::get('/orders', 'HomeController@orders')->name('orders');

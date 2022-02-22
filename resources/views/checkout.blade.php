@@ -112,17 +112,32 @@
                              </ul>
                             <ul class="list list_2">
                                 <li><a href="#">Subtotal <span>${{Cart::subtotal()}}</span></a></li>
+
+                                @if(session()->has('coupon'))
+                                    <li><a href="#">Discount ({{session()->get('coupon')['name']}}) <span>- $ {{session()->get('coupon')['discount']}}</span></a></li>
+                                    <form action="{{route('coupon.destroy')}}" method="POST">
+                                        {{csrf_field()}}
+                                        {{method_field('DELETE')}}
+                                        <button class="btn" type="submit">
+                                            <i class="fas fa-trash"> </i>
+                                        </button>
+                                    </form>
+                                @endif
+
                                 <li><a href="#">Taxe <span>{{Cart::tax()}}</span></a></li>
-                                <li><a href="#">Total <span>${{Cart::total()}}</span></a></li>
+                                <li><a href="#">Total <span>${{session()->has('coupon')
+                                    ? Cart::total() - session()->get('coupon')['discount']
+                                    : Cart::total()
+                                }}</span></a></li>
                             </ul>
                         </div><!--end your order-->
                         <div class="coupon my-3">
                             <div class="code">
                                 <p>have a code ?</p>
-                                <form action="#" method="POST">
+                                <form action="{{route('coupon.store')}}" method="POST">
+                                    {{csrf_field()}}
                                     <div class="d-flex align-item-center contact_form">
-                                        <input type="text" name="coupon_code" id="coupon_code" class="form-control" placeholder="Coupon code">
-
+                                        <input type="text" name="coupon" id="coupon" class="form-control" placeholder="Coupon code">
                                         <button class="primary-btn my-3" type="submit">
                                             <i class="fas fa-check"></i>
                                         </button>
@@ -131,6 +146,10 @@
                             </div><!--end code-->
                         </div><!--end coupon-->
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!--================End Checkout Area =================-->
 
 @stop
