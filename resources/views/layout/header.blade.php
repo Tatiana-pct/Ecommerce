@@ -14,18 +14,21 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav mr-auto ml-5">
-                        <li class="nav-item "><a class="nav-link" href="{{route('home')}}">
-                                <i class="fas fa-home"></i> Home </a>
-                        </li><!-- home -->
 
-                        <li class="nav-item submenu dropdown">
+                        <li class="nav-item "><!-- Home  -->
+                            <a class="nav-link" href="{{route('home')}}">
+                                <i class="fas fa-home"></i> Home </a>
+                        </li><!--  end home -->
+
+                        <li class="nav-item submenu dropdown"><!-- shop  -->
                             <a href="{{route('shop.index')}}" class="nav-link" >
                                 <i class="fas fa-shopping-bag" ></i> Shop</a>
-                        </li><!-- shop -->
+                        </li><!-- end shop -->
 
-                        <li class="nav-item"><a class="nav-link" href="{{route('contact')}}">
+                        <li class="nav-item"><!-- contact  -->
+                            <a class="nav-link" href="{{route('contact')}}">
                                 <i class="fas fa-user-plus"></i> Contact</a>
-                        </li><!--contact-->
+                        </li><!-- end contact-->
 
                         </ul><!-- nab-bar left-->
 
@@ -36,27 +39,34 @@
 
                     <ul class="nav navbar-nav menu_nav ml-auto">
 
-                            <li class="nav-item "><a class="nav-link" href="{{route('register')}}">
+                            <li class="nav-item "><!-- register  -->
+                                <a class="nav-link" href="{{route('register')}}">
                                     <i class="fas fa-sign-in-alt"></i> sign Up</a>
-                            </li><!-- register-->
+                            </li><!--  end register-->
                             @guest
 
-                            <li class="nav-item submenu dropdown">
+                            <li class="nav-item submenu dropdown"><!-- login  -->
                                 <a href="{{route('login')}}" class="nav-link" >
                                     <i class="fas fa-shopping-bag" ></i> Login</a>
-                            </li><!-- login-->
+                            </li><!-- end login-->
                         @else
-                            <li class="nav-item"><a class="nav-link" href="{{route('orders')}}">
+                            <li class="nav-item"><!-- orders  -->
+                                <a class="nav-link" href="{{route('orders')}}">
                                     <i class="fas fa-truck"></i> orders</a>
-                            </li><!-- orders -->
+                            </li><!-- end orders -->
 
-                            <li class="nav-item"><a class="nav-link" href="{{route('logout')}}">
+                            <li class="nav-item"><!--  log out  -->
+                                <a class="nav-link" href="{{route('logout')}}">
                                     <i class="fas fa-sign-out-alt"></i> logout</a>
                             </li><!-- logout-->
                         @endguest
-                        <li class="nav-item"><a class="nav-link" href="{{route('cart.index')}}">
-                                <i class="fas fa-shopping-cart"></i> cart</a>
-                        </li><!-- cart -->
+                        <li class="nav-item"><!--  cart -->
+                            <a class="nav-link" href="{{route('cart.index')}}">
+                                <i class="fas fa-shopping-cart"></i>
+                                Cart
+                                @if
+                            </a>
+                        </li><!--  end cart -->
                     </ul><!-- nav bar right-->
                 </div>
             </div>

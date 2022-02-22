@@ -22,7 +22,5 @@ class HomeController extends Controller
         ]);
     }
 
-    public function cart(){
-        return view('cart');
-    }
+
 }

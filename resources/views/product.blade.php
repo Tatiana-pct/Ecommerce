@@ -46,18 +46,15 @@
                             <li><a href="#"><span>Availibility</span> : In Stock</a></li>
                         </ul>
                         <p>{{$product->details}}</p>
-                        <div class="product_count">
-                            <label for="qty">Quantity:</label>
-                            <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                    class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                    class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                        </div>
                         <div class="card_area d-flex align-items-center">
-                            <a class="primary-btn" href="#">Add to Cart</a>
-                            <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-                            <a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+                            <form action="{{route('cart.store')}}" method="POST">
+                                {{csrf_field()}}
+                                <input type="hidden" name="id" value="{{$product->id}}">
+                                <input type="hidden" name="name" value="{{$product->name}}">
+                                <input type="hidden" name="price" value="{{$product->price}}">
+                                <button class="primary-btn" type="submit">Add to cart</button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
