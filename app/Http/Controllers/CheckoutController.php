@@ -49,6 +49,15 @@ class CheckoutController extends Controller
 
             ]);
 
+            foreach (Cart::content()as $product){
+                orderProduct::create([
+                    'order_id'=>$order->id,
+                    'product_id=>'=>$product->id,
+                    'quantity' => $product->qty
+
+                ]);
+            }
+
             return redirect()->route('checkout.success')->with('success', 'Paiement hab been accepted !');
 
         }
