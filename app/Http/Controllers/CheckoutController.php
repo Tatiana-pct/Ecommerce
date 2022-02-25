@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
@@ -32,6 +33,20 @@ class CheckoutController extends Controller
                     'owner'=> $request->name,
                     'product'=> Cart::content()->tojson()
                 ]
+            ]);
+
+            $order = Order::create([
+                'user_id'=>auth()->user()->id,
+                'paiement_firstname'=>$request->firstname,
+                'paiement_name'=>$request->name,
+                'paiement_phone'=>$request->phone,
+                'paiement_email'=>$request->email,
+                'paiement_address'=>$request->address,
+                'paiement_city'=>$request->city,
+                'paiement_postalcode'=>$request->postalcode,
+                'discount'=> session()-get()('coupon')['name']?? null,
+                'paiement_total'=>session()->has('coupon') ?  round(Cart::total() - session()->get('coupon')['discount'],2) : Cart::total(),
+
             ]);
 
             return redirect()->route('checkout.success')->with('success', 'Paiement hab been accepted !');
