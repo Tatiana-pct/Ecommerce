@@ -16,11 +16,20 @@ class ShopController extends Controller
      */
     public function index()
     {
+        if (request()->category){
+            $category = Category::where('slug', request()->category)->firstOrFail();
+            $products = Product::where('category_id',$category->id);
+        }else{
+            $products = Product::take(3);
+        }
+        $products = $products->paginate(6);
+
         $products = Product::all();
         $categories = Category::all();
         return view('shop',[
             'products'=> $products,
-            'categories'=> $categories
+            'categories'=> $categories,
+
         ]);
     }
 

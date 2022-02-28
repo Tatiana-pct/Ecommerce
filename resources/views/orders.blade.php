@@ -2,32 +2,22 @@
 
 @section('content')
 
-    <!-- Start Banner Area -->
-    <section class="banner-area organic-breadcrumb">
-        <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-                <div class="col-first">
-                    <h1>Orders</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="single-product.html">Orders</a>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Banner Area -->
+
+    {!! Breadcrumbs::render('orders') !!}
+
 
     <div class="container my-5">
         <div class="orders">
             <h2 class="text-center"> Orders details</h2>
+            @foreach($orders as $order)
+
             <div class="table-reponsive order_details_table">
                 <div class="d-flex justify-content-between ml-5 px-5">
                     <h4>
                         <i class="fas fa-receipt"></i>
-                        Order #4825
+                        Order #{{$order->id}}
                     </h4>
-                    <h4>Date: 18/02/2022</h4>
+                    <h4>Date: {{$order->created_at}}</h4>
                 </div>
                 <table class="table">
                     <thead>
@@ -38,28 +28,17 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($order->products as $product)
                     <tr>
-                        <td>Product Name</td>
-                        <td>X 1</td>
-                        <td>$ 6</td>
+                        <td>{{$product->Name}}</td>
+                        <td>X {{$product->pivot->quantity}}</td>
+                        <td>$ {{round($product->price * $product->pivot->quantity, 2)}}</td>
                     </tr>
-
-                    <tr>
-                        <td><b>SubTotal</b></td>
-                        <td></td>
-                        <td>$ 6</td>
-                    </tr>
-
-                    <tr>
-                        <td><b>Tax</b></td>
-                        <td></td>
-                        <td>$ 0.85</td>
-                    </tr>
-
+                    @endforeach
                     <tr>
                         <td><b>Total</b></td>
                         <td></td>
-                        <td>$ 6.85</td>
+                        <td>$ {{round($order->paiement_total)}}</td>
                     </tr>
 
 
@@ -67,6 +46,7 @@
 
                 </table><!-- table -->
             </div>
+            @endforeach
         </div>
 
     </div>

@@ -3,19 +3,7 @@
 @section('content')
 
     <!-- Start Banner Area -->
-    <section class="banner-area organic-breadcrumb">
-        <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-                <div class="col-first">
-                    <h1>Login</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="category.html">Login</a>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
+    {!! Breadcrumbs::render('login') !!}
     <!-- End Banner Area -->
 
     <!--================Login Box Area =================-->
@@ -28,7 +16,7 @@
                         <div class="hover">
                             <h4>New to our website?</h4>
                             <p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-                            <a class="primary-btn" href="{{route('login')}}">Create an Account</a>
+                            <a class="primary-btn" href="{{route('register')}}">Create an Account</a>
                         </div>
                     </div>
                 </div>

@@ -2,22 +2,9 @@
 
 @section('content')
 
-    <!-- Start Banner Area -->
-    <section class="banner-area organic-breadcrumb">
-        <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-                <div class="col-first">
-                    <h1>Shop Category page</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="category.html">Fashon Category</a>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Banner Area -->
+
+{!! Breadcrumbs::render('shop') !!}
+
     <div class="container">
         <div class="row">
             <div class="col-xl-3 col-lg-4 col-md-5">
@@ -25,10 +12,12 @@
                     <div class="head">Browse Categories</div>
                     <ul class="main-categories">
                         @foreach($categories as $category)
-                            <li class="main-nav-list">
-                                <a data-toggle="collapse" href="#fruitsVegetable" aria-expanded="false" aria-controls="fruitsVegetable">{{$category->name}}</a>
-                                <span class="number"> <!-- count produit a faire --></span>
-                        </li>
+                            <li class="main-nav-list"><a data-toggle="collapse"href="#fruitVegetable" aria-expanded="false">
+                                    <a href="{{route('shop.index',['category'=>$category->slug])}}">
+                                    {{$category->name}}<span class="number"></span>
+                                </a>
+
+                            <li>
                         @endforeach
                     </ul>
                 </div>
@@ -44,6 +33,8 @@
                         </select>
                     </div>
 
+
+                    {{--{{$products->appends(request()->input())->link()}}--}}
                     <div class="pagination ml-auto">
                         <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
                         <a href="#" class="active">1</a>

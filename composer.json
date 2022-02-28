@@ -6,6 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "ext-json": "*",
+        "davejamesmiller/laravel-breadcrumbs": "3.x",
         "fideloper/proxy": "~3.3",
         "gloudemans/shoppingcart": "^2.6",
         "laravel/framework": "5.5.*",

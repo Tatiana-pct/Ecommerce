@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\OrderProduct;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
@@ -71,8 +72,14 @@ class CheckoutController extends Controller
         if (!session()->has('success')){
             return  redirect()->route('home');
         }
+        $order = Order::latest()->first();
+        //$orderProducts = OrderProduct::where('order_id', $order->id)->get();
+
         Cart::destroy();
         session()->forget('coupon');
-        return view('success');
+
+        return view('success', [
+            'order'=> $order,
+        ]);
     }
 }

@@ -43,7 +43,7 @@ Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
 Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
 
 //orders
-Route::get('/orders', 'HomeController@orders')->name('orders');
+Route::get('/orders', 'HomeController@orders')->name('orders')->middleware('auth');
 
 
 
