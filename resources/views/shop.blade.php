@@ -99,6 +99,7 @@
                             <option value="1">Show 12</option>
                         </select>
                     </div>
+                    {{--{{$products->appends(request()->input())->link()}}--}}
                     <div class="pagination">
                         <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
                         <a href="#" class="active">1</a>
