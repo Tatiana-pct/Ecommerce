@@ -16,19 +16,30 @@ class ShopController extends Controller
      */
     public function index()
     {
+        $paginate = 3;
+
         if (request()->category){
             $category = Category::where('slug', request()->category)->firstOrFail();
             $products = Product::where('category_id',$category->id);
         }else{
             $products = Product::take(3);
         }
-        $products = $products->paginate(6);
+        if (request()->sort == 'asc'){
+            $products = $products->orderBy('price')->paginate($paginate);
+        }else if(request()->sort == 'desc'){
+        $products = $products->orderBy('price', 'DESC')->paginate($paginate);
+        }else{
+            $products = $products->paginate($paginate);
+        }
+
+            //pagination
+
 
         $products = Product::all();
         $categories = Category::all();
         return view('shop',[
             'products'=> $products,
-            'categories'=> $categories,
+            'categories'=> $categories
 
         ]);
     }

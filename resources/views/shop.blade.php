@@ -25,12 +25,10 @@
             <div class="col-xl-9 col-lg-8 col-md-7">
                 <!-- Start Filter Bar -->
                 <div class="filter-bar d-flex flex-wrap align-items-center">
-                    <div class="sorting">
-                        <select>
-                            <option value="1">Default sorting</option>
-                            <option value="1">Default sorting</option>
-                            <option value="1">Default sorting</option>
-                        </select>
+                    <div class="dropdown">
+                        <a class="btn" href="{{route('shop.index', ['category'=>request()->categrory, 'sort' =>'asc'])}}">Prix croissant</a>
+                        <a class="btn" href="{{route('shop.index', ['category'=>request()->categrory, 'sort' =>'desc'])}}">prix décroissant</a>
+
                     </div>
 
 
@@ -64,25 +62,6 @@
                                     <div class="price">
                                         <h6>{{$product->price}}</h6>
                                     </div>
-                                    <div class="prd-bottom">
-
-                                        <a href="" class="social-info">
-                                            <span class="ti-bag"></span>
-                                            <p class="hover-text">add to bag</p>
-                                        </a>
-                                        <a href="" class="social-info">
-                                            <span class="lnr lnr-heart"></span>
-                                            <p class="hover-text">Wishlist</p>
-                                        </a>
-                                        <a href="" class="social-info">
-                                            <span class="lnr lnr-sync"></span>
-                                            <p class="hover-text">compare</p>
-                                        </a>
-                                        <a href="" class="social-info">
-                                            <span class="lnr lnr-move"></span>
-                                            <p class="hover-text">view more</p>
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -91,16 +70,13 @@
                 </section>
                 <!-- End Best Seller -->
                 <!-- Start Filter Bar -->
-                <div class="filter-bar d-flex flex-wrap align-items-center">
-                    <div class="sorting mr-auto">
-                        <select>
-                            <option value="1">Show 12</option>
-                            <option value="1">Show 12</option>
-                            <option value="1">Show 12</option>
-                        </select>
+                <div class="filter-bar d-flex flex-wrap align-items-center mb-5">
+                    <div class="dropdown">
+                        <a class="btn" href="{{route('shop.index', ['category'=>request()->categrory, 'sort' =>'asc'])}}">Prix croissant</a>
+                        <a class="btn" href="{{route('shop.index', ['category'=>request()->categrory, 'sort' =>'desc'])}}">prix décroissant</a>
                     </div>
                     {{--{{$products->appends(request()->input())->link()}}--}}
-                    <div class="pagination">
+                    <div class="pagination ml-auto">
                         <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
                         <a href="#" class="active">1</a>
                         <a href="#">2</a>
